@@ -42,9 +42,14 @@ app.use('/api', apiRoutes);
 app.use(errorHandler);
 
 // --------------- Start ---------------
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`\n🚀 Voiceover Generator API running on http://localhost:${PORT}`);
   console.log(`   Health check: http://localhost:${PORT}/api/health\n`);
 });
+
+// Configure long timeouts to prevent ECONNRESET during heavy generation logic
+server.setTimeout(300000); // 5 minutes overall connection timeout
+server.keepAliveTimeout = 120000; // 2 minutes keepAlive
+server.headersTimeout = 125000; // slightly above keepAlive to prevent sudden closes
 
 export default app;

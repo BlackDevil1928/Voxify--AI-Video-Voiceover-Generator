@@ -64,7 +64,7 @@ export function useVoiceover() {
       });
 
       setJobId(result.jobId);
-      setVideoUrl(result.videoUrl);
+      setVideoUrl(api.getServerUrl(result.videoUrl));
       setVideoInfo(result.videoInfo);
       setCurrentStep(STEPS.CONFIGURE);
       setCurrentAction('');
@@ -116,7 +116,7 @@ export function useVoiceover() {
         voiceId,
       });
 
-      setAudioUrl(voiceResult.audioUrl);
+      setAudioUrl(api.getServerUrl(voiceResult.audioUrl));
       setGenerationProgress(66);
 
       // Phase 3: Merge video + audio
@@ -126,8 +126,8 @@ export function useVoiceover() {
         keepOriginalAudio,
       });
 
-      setOutputUrl(mergeResult.outputUrl);
-      setDownloadUrl(mergeResult.downloadUrl);
+      setOutputUrl(api.getServerUrl(mergeResult.outputUrl));
+      setDownloadUrl(api.getServerUrl(mergeResult.downloadUrl));
       setGenerationProgress(100);
 
       // Done!

@@ -1,9 +1,23 @@
 import axios from 'axios';
 
+const BASE_URL = import.meta.env.VITE_API_URL || '/api';
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: BASE_URL,
   timeout: 120000, // 2 minutes for long operations
 });
+
+/**
+ * Helper to resolve relative backend URLs to absolute URLs in production.
+ */
+export function getServerUrl(path) {
+  if (!path) return path;
+  if (path.startsWith('http')) return path;
+  // Remove trailing /api to get the root backend URL, then append path
+  const serverRoot = BASE_URL.replace(/\/api\/?$/, '');
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  return `${serverRoot}${normalizedPath}`;
+}
 
 /**
  * Upload a video file.

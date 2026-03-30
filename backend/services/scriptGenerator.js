@@ -1,6 +1,14 @@
 import { HfInference } from '@huggingface/inference';
 import { ApiError } from '../middleware/errorHandler.js';
 
+const withTimeout = (promise, ms) => {
+  let timeoutId;
+  const timeoutPromise = new Promise((_, reject) => {
+    timeoutId = setTimeout(() => reject(new Error('Request timed out')), ms);
+  });
+  return Promise.race([promise, timeoutPromise]).finally(() => clearTimeout(timeoutId));
+};
+
 // Tone-specific prompt templates for script generation
 const TONE_PROMPTS = {
   professional: 'Write a professional, authoritative voiceover script.',
@@ -38,7 +46,7 @@ async function tryHuggingFace(apiToken, systemPrompt, userMessage) {
         console.log(`🔄 Trying ${method} with model: ${model}`);
 
         if (method === 'chat') {
-          const response = await hf.chatCompletion({
+          const response = await withTimeout(hf.chatCompletion({
             model,
             messages: [
               { role: 'system', content: systemPrompt },
@@ -46,7 +54,7 @@ async function tryHuggingFace(apiToken, systemPrompt, userMessage) {
             ],
             max_tokens: 400,
             temperature: 0.7,
-          });
+          }), 10000);
           const text = response.choices?.[0]?.message?.content || '';
           if (text.length >= 20) {
             console.log(`✅ Script generated via chatCompletion: ${model}`);
@@ -54,7 +62,7 @@ async function tryHuggingFace(apiToken, systemPrompt, userMessage) {
           }
         } else {
           const fullPrompt = `${systemPrompt}\n\nUser: ${userMessage}\n\nVoiceover script:`;
-          const response = await hf.textGeneration({
+          const response = await withTimeout(hf.textGeneration({
             model,
             inputs: fullPrompt,
             parameters: {
@@ -63,7 +71,7 @@ async function tryHuggingFace(apiToken, systemPrompt, userMessage) {
               top_p: 0.9,
               return_full_text: false,
             },
-          });
+          }), 10000);
           const text = response.generated_text || '';
           if (text.length >= 20) {
             console.log(`✅ Script generated via textGeneration: ${model}`);

@@ -17,7 +17,7 @@ export default function Header() {
           🎙️
         </div>
         <h1 className="font-display text-3xl md:text-4xl font-bold gradient-text">
-          VoiceForge AI
+          Voxify
         </h1>
       </div>
 

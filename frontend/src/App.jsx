@@ -151,7 +151,7 @@ export default function App() {
       {/* Footer */}
       <footer className="py-6 text-center border-t border-white/[0.05]">
         <p className="text-xs text-white/20">
-          VoiceForge AI · Powered by Hugging Face & Murf AI · Built with ❤️
+          Voxify · Powered by Hugging Face & Murf AI · Built with ❤️
         </p>
       </footer>
     </div>
