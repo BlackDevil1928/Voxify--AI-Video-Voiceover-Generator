@@ -12,11 +12,13 @@ export default function Header() {
       </div>
 
       {/* Logo & Title */}
-      <div className="flex items-center justify-center gap-3 mb-3">
-        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-500 to-accent-purple flex items-center justify-center text-2xl shadow-lg shadow-brand-500/30">
-          🎙️
-        </div>
-        <h1 className="font-display text-3xl md:text-4xl font-bold gradient-text">
+      <div className="flex items-center justify-center gap-4 mb-3">
+        <img 
+          src="/voxify-logo.png" 
+          alt="Voxify Logo" 
+          className="w-14 h-14 object-contain drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]" 
+        />
+        <h1 className="font-display text-3xl md:text-5xl font-black text-white tracking-tight">
           Voxify
         </h1>
       </div>

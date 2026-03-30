@@ -8,9 +8,11 @@ export default function LandingPage({ onStart }) {
       <nav className="fixed top-0 inset-x-0 z-50 border-b border-white/[0.05] bg-black/50 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-black font-black text-lg shadow-lg">
-              V
-            </div>
+            <img 
+              src="/voxify-logo.png" 
+              alt="Voxify Logo" 
+              className="w-10 h-10 object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]" 
+            />
             <span className="font-display font-black text-2xl tracking-tighter">Voxify</span>
           </div>
           <button 
