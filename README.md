@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://via.placeholder.com/800x200/000000/FFFFFF?text=Voxify+-+AI+Video+Voiceover+Generator" alt="Voxify Logo" />
+  <img src="frontend/public/voxify-logo.png" alt="Voxify AI Logo" width="180" />
   
   <br />
   
