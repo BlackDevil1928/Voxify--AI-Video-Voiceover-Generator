@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import LandingPage from './components/LandingPage';
 import Header from './components/Header';
 import StepWizard from './components/StepWizard';
 import VideoUpload from './components/VideoUpload';
@@ -11,10 +12,15 @@ import OutputPlayer from './components/OutputPlayer';
 import { useVoiceover, STEPS } from './hooks/useVoiceover';
 
 export default function App() {
+  const [showApp, setShowApp] = useState(false);
   const v = useVoiceover();
 
+  if (!showApp) {
+    return <LandingPage onStart={() => setShowApp(true)} />;
+  }
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col animate-fade-in relative">
       <Header />
 
       {/* Step Wizard */}
