@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_API_URL || '/api';
+let rawEnvUrl = import.meta.env.VITE_API_URL;
+// Idiot-proof the URL: if the user forgot '/api' at the end of their Render URL, add it.
+if (rawEnvUrl && !rawEnvUrl.endsWith('/api')) {
+  rawEnvUrl = rawEnvUrl.replace(/\/$/, '') + '/api';
+}
+const BASE_URL = rawEnvUrl || '/api';
 
 const api = axios.create({
   baseURL: BASE_URL,
