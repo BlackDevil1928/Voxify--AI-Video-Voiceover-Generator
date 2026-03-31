@@ -12,23 +12,64 @@ const __dirname = path.dirname(__filename);
 // Voice IDs must exactly match supported voice names in the Murf API library
 const VOICE_MAP = {
   // English voices
-  'en-male':   { voiceId: 'Ken',     locale: 'en-US', name: 'Ken (Male, US English)' },
-  'en-female': { voiceId: 'Natalie', locale: 'en-US', name: 'Natalie (Female, US English)' },
+  'en-male-1':   { voiceId: 'en-US-cooper',    locale: 'en-US', name: 'Cooper (Male, US)' },
+  'en-male-2':   { voiceId: 'en-US-wayne',     locale: 'en-US', name: 'Wayne (Male, US)' },
+  'en-male-3':   { voiceId: 'en-US-daniel',    locale: 'en-US', name: 'Daniel (Male, US)' },
+  'en-female-1': { voiceId: 'en-US-alina',     locale: 'en-US', name: 'Alina (Female, US)' },
+  'en-female-2': { voiceId: 'en-UK-hazel',     locale: 'en-GB', name: 'Hazel (Female, UK)' },
+  'en-female-3': { voiceId: 'en-US-imani',     locale: 'en-US', name: 'Imani (Female, US)' },
+
   // Hindi voices
-  'hi-male':   { voiceId: 'Rahul',   locale: 'hi-IN', name: 'Rahul (Male, Hindi)' },
-  'hi-female': { voiceId: 'Ayushi',  locale: 'hi-IN', name: 'Ayushi (Female, Hindi)' },
+  'hi-male-1':   { voiceId: 'hi-IN-rahul',     locale: 'hi-IN', name: 'Rahul (Male, Hindi)' },
+  'hi-male-2':   { voiceId: 'hi-IN-amit',      locale: 'hi-IN', name: 'Amit (Male, Hindi)' },
+  'hi-male-3':   { voiceId: 'hi-IN-shaan',     locale: 'hi-IN', name: 'Shaan (Male, Hindi)' },
+  'hi-female-1': { voiceId: 'hi-IN-shweta',    locale: 'hi-IN', name: 'Shweta (Female, Hindi)' },
+  'hi-female-2': { voiceId: 'hi-IN-ayushi',    locale: 'hi-IN', name: 'Ayushi (Female, Hindi)' },
+  'hi-female-3': { voiceId: 'hi-IN-kavya',     locale: 'hi-IN', name: 'Kavya (Female, Hindi)' },
+
+  // Spanish voices
+  'es-male-1':   { voiceId: 'es-MX-alejandro', locale: 'es-MX', name: 'Alejandro (Male, Mexico)' },
+  'es-male-2':   { voiceId: 'es-ES-enrique',   locale: 'es-ES', name: 'Enrique (Male, Spain)' },
+  'es-male-3':   { voiceId: 'es-MX-carlos',    locale: 'es-MX', name: 'Carlos (Male, Mexico)' },
+  'es-female-1': { voiceId: 'es-ES-carla',     locale: 'es-ES', name: 'Carla (Female, Spain)' },
+  'es-female-2': { voiceId: 'es-ES-elvira',    locale: 'es-ES', name: 'Elvira (Female, Spain)' },
+  'es-female-3': { voiceId: 'es-ES-carmen',    locale: 'es-ES', name: 'Carmen (Female, Spain)' },
+
+  // French voices
+  'fr-male-1':   { voiceId: 'fr-FR-maxime',    locale: 'fr-FR', name: 'Maxime (Male, France)' },
+  'fr-male-2':   { voiceId: 'fr-FR-axel',      locale: 'fr-FR', name: 'Axel (Male, France)' },
+  'fr-male-3':   { voiceId: 'fr-FR-guillaume', locale: 'fr-FR', name: 'Guillaume (Male, France)' },
+  'fr-female-1': { voiceId: 'fr-FR-adélie',    locale: 'fr-FR', name: 'Adélie (Female, France)' },
+  'fr-female-2': { voiceId: 'fr-FR-justine',   locale: 'fr-FR', name: 'Justine (Female, France)' },
+  'fr-female-3': { voiceId: 'fr-FR-louise',    locale: 'fr-FR', name: 'Louise (Female, France)' },
+
+  // German voices
+  'de-male-1':   { voiceId: 'de-DE-matthias',  locale: 'de-DE', name: 'Matthias (Male, Germany)' },
+  'de-male-2':   { voiceId: 'de-DE-björn',     locale: 'de-DE', name: 'Björn (Male, Germany)' },
+  'de-male-3':   { voiceId: 'de-DE-ralf',      locale: 'de-DE', name: 'Ralf (Male, Germany)' },
+  'de-female-1': { voiceId: 'de-DE-josephine', locale: 'de-DE', name: 'Josephine (Female, Germany)' },
+  'de-female-2': { voiceId: 'de-DE-erna',      locale: 'de-DE', name: 'Erna (Female, Germany)' },
+  'de-female-3': { voiceId: 'de-DE-lia',       locale: 'de-DE', name: 'Lia (Female, Germany)' },
 };
 
 /**
  * Retrieve available voices for the frontend to display.
  */
 export function getAvailableVoices() {
-  return Object.entries(VOICE_MAP).map(([key, val]) => ({
-    id: key,
-    ...val,
-    language: key.startsWith('hi') ? 'Hindi' : 'English',
-    gender: key.includes('male') && !key.includes('female') ? 'Male' : 'Female',
-  }));
+  return Object.entries(VOICE_MAP).map(([key, val]) => {
+    let langName = 'English';
+    if (key.startsWith('hi')) langName = 'Hindi';
+    else if (key.startsWith('es')) langName = 'Spanish';
+    else if (key.startsWith('fr')) langName = 'French';
+    else if (key.startsWith('de')) langName = 'German';
+
+    return {
+      id: key,
+      ...val,
+      language: langName,
+      gender: key.includes('male') && !key.includes('female') ? 'Male' : 'Female',
+    };
+  });
 }
 
 /**

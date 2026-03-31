@@ -1,0 +1,10 @@
+Testing Spanish script generation...
+ℹ️  No Hugging Face token configured, using template generator
+📝 Using built-in template generator (HF API unavailable)
+Result: {
+  script: 'What if the future arrived sooner than you expected? Para apreciar verdaderamente A product demo showcasing a new fitness tracker, tienes que experimentarlo de primera mano. Nuestro enfoque ahora mismo está en A product demo showcasing a new fitness tracker. Cada detalle ha sido cuidadosamente diseñado para ofrecer una experiencia excepcional.',
+  hook: 'What if the future arrived sooner than you expected?',
+  wordCount: 51,
+  tone: 'professional',
+  language: 'es'
+}

@@ -22,14 +22,15 @@ const TONE_PROMPTS = {
 const LANGUAGE_INSTRUCTIONS = {
   en: 'Write the script in English.',
   hi: 'Write the script in Hindi (Devanagari script).',
+  es: 'Write the script strictly in Spanish.',
+  fr: 'Write the script strictly in French.',
+  de: 'Write the script strictly in German.',
 };
 
 // Models to try in order (free HF Inference tier)
 const MODELS = [
-  'meta-llama/Llama-3.2-3B-Instruct',
-  'mistralai/Mistral-Nemo-Instruct-2407',
-  'HuggingFaceH4/zephyr-7b-beta',
   'Qwen/Qwen2.5-72B-Instruct',
+  'meta-llama/Llama-3.2-3B-Instruct',
 ];
 
 /**
@@ -38,8 +39,15 @@ const MODELS = [
  */
 async function tryHuggingFace(apiToken, systemPrompt, userMessage) {
   const hf = new HfInference(apiToken);
+  const startTime = Date.now();
+  const MAX_GLOBAL_DURATION = 40000; // 40 seconds max before we gracefully fallback
 
   for (const model of MODELS) {
+    if (Date.now() - startTime > MAX_GLOBAL_DURATION) {
+      console.warn('⚠️  Global HF proxy timeout approach reached. Aborting AI generation safely.');
+      break; 
+    }
+
     // Try chatCompletion first, then textGeneration as fallback
     for (const method of ['chat', 'text']) {
       try {
@@ -160,6 +168,27 @@ const BODY_TEMPLATES = {
     'ज़रा सोचिए, अत्याधुनिक तकनीक किस तरह {context} को एक खास फायदा देती है। ',
     'यह कोई आम वीडियो नहीं है। यह सोचने का पूरा नज़रिया बदल देता है कि हम {context} को कैसे देखते हैं। ',
     'दुनिया भर के लोग यह जान चुके हैं कि क्यों {context} बाकी सब से कहीं आगे है। ',
+  ],
+  es: [
+    'Nuestro enfoque ahora mismo está en {context}. Cada detalle ha sido cuidadosamente diseñado para ofrecer una experiencia excepcional. ',
+    'Cuando observas de cerca {context}, te das cuenta de que representa un nuevo estándar de calidad. ',
+    'La increíble atención al detalle en torno a {context} es lo que realmente marca la diferencia. ',
+    'Los resultados que rodean a {context} hablan por sí mismos: potentes, refinados y construidos para impactar. ',
+    'Para apreciar verdaderamente {context}, tienes que experimentarlo de primera mano. ',
+  ],
+  fr: [
+    'Notre attention se porte actuellement sur {context}. Chaque détail a été soigneusement conçu pour offrir une expérience exceptionnelle. ',
+    'Quand on regarde de plus près {context}, on se rend compte qu\'il représente une nouvelle norme de qualité. ',
+    'L\'incroyable souci du détail autour de {context} est ce qui fait vraiment la différence. ',
+    'Les résultats concernant {context} parlent d\'eux-mêmes : puissants, raffinés et conçus pour avoir un impact. ',
+    'Pour vraiment apprécier {context}, vous devez l\'expérimenter par vous-même. ',
+  ],
+  de: [
+    'Unser Fokus liegt derzeit auf {context}. Jedes Detail wurde sorgfältig ausgearbeitet, um ein außergewöhnliches Erlebnis zu bieten. ',
+    'Wenn man sich {context} genauer ansieht, erkennt man, dass es einen neuen Qualitätsstandard darstellt. ',
+    'Die unglaubliche Liebe zum Detail rund um {context} zeichnet die Dinge wirklich aus. ',
+    'Die Ergebnisse rund um {context} sprechen für sich: kraftvoll, raffiniert und mit großer Wirkung. ',
+    'Um {context} wirklich schätzen zu können, muss man es aus erster Hand erleben. ',
   ],
 };
 

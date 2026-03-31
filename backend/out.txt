@@ -1,0 +1,31 @@
+
+--- ES VOICES ---
+Alejandro (M) (Male, es-MX, es-MX-alejandro)
+Carla (F) (Female, es-ES, es-ES-carla)
+Elvira (F) (Female, es-ES, es-ES-elvira)
+Enrique (M) (Male, es-ES, es-ES-enrique)
+Carmen (F) (Female, es-ES, es-ES-carmen)
+Valeria (F) (Female, es-MX, es-MX-valeria)
+Carlos (M) (Male, es-MX, es-MX-carlos)
+Javier (M) (Male, es-ES, es-ES-javier)
+Luisa (F) (Female, es-MX, es-MX-luisa)
+
+--- FR VOICES ---
+Adélie (F) (Female, fr-FR, fr-FR-adélie)
+Maxime (M) (Male, fr-FR, fr-FR-maxime)
+Justine (F) (Female, fr-FR, fr-FR-justine)
+Axel (M) (Male, fr-FR, fr-FR-axel)
+Guillaume (M) (Male, fr-FR, fr-FR-guillaume)
+Louise (F) (Female, fr-FR, fr-FR-louise)
+Clément (M) (Male, fr-CA, fr-CA-clément)
+Louis (M) (Male, fr-FR, fr-FR-louis)
+Alexis (M) (Male, fr-CA, fr-CA-alexis)
+
+--- DE VOICES ---
+Josephine (F) (Female, de-DE, de-DE-josephine)
+Erna (F) (Female, de-DE, de-DE-erna)
+Lia (F) (Female, de-DE, de-DE-lia)
+Lara (F) (Female, de-DE, de-DE-lara)
+Matthias (M) (Male, de-DE, de-DE-matthias)
+Björn (M) (Male, de-DE, de-DE-björn)
+Ralf (M) (Male, de-DE, de-DE-ralf)

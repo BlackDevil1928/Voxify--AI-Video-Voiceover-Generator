@@ -32,7 +32,7 @@ export function useVoiceover() {
   const [context, setContext] = useState('');
   const [tone, setTone] = useState('professional');
   const [language, setLanguage] = useState('en');
-  const [voiceId, setVoiceId] = useState('en-male');
+  const [voiceId, setVoiceId] = useState('en-male-1');
   const [keepOriginalAudio, setKeepOriginalAudio] = useState(false);
 
   // ── Generated content ──
@@ -154,7 +154,7 @@ export function useVoiceover() {
     setContext('');
     setTone('professional');
     setLanguage('en');
-    setVoiceId('en-male');
+    setVoiceId('en-male-1');
     setKeepOriginalAudio(false);
     setScript('');
     setHook('');

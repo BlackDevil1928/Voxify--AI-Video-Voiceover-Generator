@@ -18,18 +18,20 @@
 ---
 
 ## 📖 About Voxify
-**Voxify** is a production-ready, full-stack enterprise SaaS web application that fundamentally transforms video content creation. By dragging and dropping an MP4 file, users leverage state-of-the-art Natural Language Processing combined with hyper-realistic AI Speech Synthesis to automatically generate perfectly timed, studio-grade voiceover tracks natively baked into the video. 
+**Voxify** is a production-ready, full-stack enterprise SaaS web application that fundamentally transforms video content creation. By dragging and dropping an MP4 file, users leverage state-of-the-art Natural Language Processing combined with hyper-realistic AI Speech Synthesis to automatically generate perfectly timed, studio-grade multilingual voiceover tracks natively baked into your videos. 
 
-Gone are the days of manually scripting, recording endless retakes, matching audio lengths, and rendering in heavy software. 
+Whether you are targeting global audiences or domestic markets, Voxify replaces the grueling process of manually translating scripts, recording endless retakes, matching audio lengths, and rendering in heavy software.
 
 ---
 
 ## ✨ Key Features
 
 - **🚀 Interactive SaaS Dashboard**: A premium, dark-themed user interface running on Framer Motion and Shadcn patterns. Includes a Pong-style interactive hero background.
-- **🧠 Intelligent Script Generation**: Harnesses **Hugging Face** to analyze your topic and instantly write a compelling context-aware voiceover script perfectly matching the video's pacing.
-- **🎭 Customizable Tones & Voices**: Pick between *Professional, Excited, Storytelling, YouTube, Ad, or Documentary* tones. Utilizes **Murf AI** to provide neural-net voices in English and Hindi for both male and female profiles.
-- **⚙️ Automated Audiovisual Processing**: Built-in backend **FFmpeg** engine autonomously maps, merges, and perfectly syncs the newly generated audio buffer over the uploaded video.
+- **🌍 Global Multilingual Support**: Fully functional contextual generation and translation natively supporting **English, Hindi, Spanish, French, and German**.
+- **🧠 Intelligent Script Generation**: Harnesses **Hugging Face** LLMs (`Qwen2.5` & `Llama-3.2`) to analyze your topic and instantly write compelling, context-aware localized scripts perfectly matching the video's pacing.
+- **🎭 30 Premium GEN2 Voices**: Pick between *Professional, Excited, Storytelling, YouTube, Ad, or Documentary* tones. Utilizes the latest **Murf AI GEN2** REST API to stream 30 highly verified, hyper-realistic male and female voice profiles spanning 5 global dialects.
+- **⚙️ Automated Audiovisual Processing**: Built-in backend **FFmpeg** engine autonomously extracts original audio, maps timescale bounds, and perfectly syncs the newly generated multilingual buffer over the uploaded video.
+- **🛡️ Bulletproof Fallback Engine**: If upstream AI translation models time out (common with foreign NLP tasks), the Express backend is rigged with a graceful resilience layer that injects hard-coded, professionally translated offline arrays to ensure the system never crashes.
 - **⚖️ Side-by-Side Review**: Immediate A/B interactive HTML5 video players to compare the original raw footage to the new AI-powered production.
 
 ---
